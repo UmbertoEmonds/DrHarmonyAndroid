@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.umbertoemonds.dharmonie.databinding.ActivityAddChordsBinding
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class AddChordsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddChordsBinding

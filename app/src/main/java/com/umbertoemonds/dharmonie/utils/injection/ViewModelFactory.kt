@@ -2,12 +2,24 @@ package com.umbertoemonds.dharmonie.utils.injection
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import javax.inject.Inject
-import javax.inject.Provider
-import javax.inject.Singleton
+import com.umbertoemonds.dharmonie.presentation.viewmodel.LoginViewModel
 
+class ViewModelFactory : ViewModelProvider.Factory {
 
-@Singleton
-class ViewModelFactory @Inject constructor(private val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>>): ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T = viewModels[modelClass]?.get() as T
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if(modelClass == LoginViewModel::class.java){
+            return LoginViewModel(Injection.provideUserCaseHandler(), Injection.provideLoginUseCase()) as T
+        }
+        throw IllegalArgumentException("Unknow model class for $modelClass")
+    }
+
+    companion object {
+        private var INSTANCE: ViewModelFactory? = null
+        fun getInstance(): ViewModelFactory {
+            if (INSTANCE == null) {
+                INSTANCE = ViewModelFactory()
+            }
+            return INSTANCE!!
+        }
+    }
 }

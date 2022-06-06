@@ -7,9 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.umbertoemonds.dharmonie.R
 import com.umbertoemonds.dharmonie.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -22,12 +20,12 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        val intent = Intent(this, LoginActivity::class.java);
-        startActivity(intent);
+        val loginIntent = Intent(this, LoginActivity::class.java);
+        startActivity(loginIntent);
 
         binding.fab.setOnClickListener {
-            val intent = Intent(this, AddChordsActivity::class.java);
-            startActivity(intent);
+            val addChordIntent = Intent(this, AddChordsActivity::class.java);
+            startActivity(addChordIntent);
         }
     }
 

@@ -1,8 +1,8 @@
 package com.umbertoemonds.dharmonie.data
 
-import com.umbertoemonds.dharmonie.data.bodies.LoginData
+import com.umbertoemonds.dharmonie.domain.models.LoginData
 import com.umbertoemonds.dharmonie.data.models.UserData
-import io.reactivex.rxjava3.core.Single
+import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -10,9 +10,9 @@ import retrofit2.http.POST
 interface ApiService {
 
     @POST("/login")
-    suspend fun login(@Body loginData: LoginData): Single<String>
+    fun login(@Body loginData: LoginData): Call<String>
 
     @GET("/user")
-    suspend fun getUserDetails(): Single<UserData>
+    fun getUserDetails(): Call<UserData>
 
 }

@@ -1,10 +1,21 @@
 package com.umbertoemonds.dharmonie.domain.repositories
 
-import com.umbertoemonds.dharmonie.data.bodies.LoginData
+import com.umbertoemonds.dharmonie.domain.models.LoginData
 import com.umbertoemonds.dharmonie.data.models.UserData
-import io.reactivex.rxjava3.core.Single
 
 interface UserRepository {
-    suspend fun login(loginData: LoginData): Single<String>
-    suspend fun getDetails(): Single<UserData>
+
+    fun login (loginData: LoginData, callback: LoginCallback)
+    fun getUserDetails(callback: GetDetailsCallback)
+
+    interface LoginCallback {
+        fun onLoggedIn(token: String)
+        fun onError(t: Throwable)
+    }
+
+    interface GetDetailsCallback {
+        fun onDetailsLoaded(userData: UserData)
+        fun onError(t: Throwable)
+    }
+
 }

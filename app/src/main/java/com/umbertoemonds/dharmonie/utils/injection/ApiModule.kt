@@ -1,15 +1,15 @@
 package com.umbertoemonds.dharmonie.utils.injection
 
 import com.umbertoemonds.dharmonie.data.ApiService
-import dagger.Module
-import dagger.Provides
 import retrofit2.Retrofit
 
-@Module(includes = [NetworkModule::class])
-class ApiModule {
+object ApiModule {
 
-    @Provides
-    fun bindApiService(retrofit: Retrofit): ApiService {
+    fun create(): ApiService {
+        val client = NetworkModule.provideOkHttpClient()
+        val retrofit = NetworkModule.provideRetrofit(client)
+
+        // TODO integrer la ligne suivante dans une factory pour appeler un autre service si besoin
         return retrofit.create(ApiService::class.java)
     }
 

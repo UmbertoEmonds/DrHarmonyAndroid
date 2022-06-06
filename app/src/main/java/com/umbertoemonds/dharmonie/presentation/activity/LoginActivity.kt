@@ -2,24 +2,18 @@ package com.umbertoemonds.dharmonie.presentation.activity
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import com.umbertoemonds.dharmonie.data.bodies.LoginData
+import com.google.gson.Gson
+import com.umbertoemonds.dharmonie.domain.models.LoginData
 import com.umbertoemonds.dharmonie.databinding.LoginActivityBinding
-import com.umbertoemonds.dharmonie.presentation.activity.login.LoginViewModel
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import com.umbertoemonds.dharmonie.domain.repositories.UserRepository
+import com.umbertoemonds.dharmonie.presentation.viewmodel.LoginViewModel
+import com.umbertoemonds.dharmonie.utils.injection.ViewModelFactory
 
-@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: LoginActivityBinding
-
-    private val loginViewModel: LoginViewModel by viewModels()
+    private val loginViewModel = ViewModelFactory.getInstance().create(LoginViewModel::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +22,19 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.seConnecterBtn.setOnClickListener {
-            lifecycleScope.launch {
-                loginViewModel.login(LoginData("umberto.emonds@gmail.com", "admin")).collect {
-                    Log.v("AZERTY", it);
+
+            val loginData = LoginData("umberto.emonds@gmail.com", "admin");
+
+            loginViewModel.login(loginData, object : UserRepository.LoginCallback {
+                override fun onLoggedIn(token: String) {
+
                 }
-            }
+
+                override fun onError(t: Throwable) {
+
+                }
+
+            })
 
         }
     }
