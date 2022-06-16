@@ -30,6 +30,10 @@ class UseCaseHandler (private val useCaseScheduler: UseCaseScheduler) {
             useCaseScheduler.onError(useCaseCallback, t)
     }
 
+    private fun <V : UseCase.ResponseValue> notifySessionExpired(useCaseCallback: UseCase.UseCaseCallback<V>){
+        useCaseScheduler.onSessionExpired(useCaseCallback)
+    }
+
     private class UiCallbackWrapper<V : UseCase.ResponseValue>(
         private val callback: UseCase.UseCaseCallback<V>,
         private val useCaseHandler: UseCaseHandler) : UseCase.UseCaseCallback<V> {
@@ -40,6 +44,10 @@ class UseCaseHandler (private val useCaseScheduler: UseCaseScheduler) {
 
         override fun onError(t: Throwable) {
             useCaseHandler.notifyError(callback, t)
+        }
+
+        override fun onSessionExpired() {
+            useCaseHandler.notifySessionExpired(callback)
         }
     }
 

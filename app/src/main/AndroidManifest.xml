@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SplashScreen">
         <activity
-            android:name=".presentation.activity.MainActivity"
+            android:name=".presentation.activity.GrillesActivity"
             android:exported="true"
             android:theme="@style/Theme.DHarmonie.NoActionBar">
             <intent-filter>
@@ -25,10 +25,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.activity.AddChordsActivity">
+            android:name=".presentation.activity.AjouterGrilleActivity">
         </activity>
         <activity
-            android:name=".presentation.activity.LoginActivity">
+            android:name=".presentation.activity.LoginActivity"
+            android:theme="@style/Theme.DHarmonie.NoActionBar">
         </activity>
     </application>
 

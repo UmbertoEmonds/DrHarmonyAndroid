@@ -1,5 +1,6 @@
 package com.umbertoemonds.dharmonie.utils.injection
 
+import android.content.Context
 import com.umbertoemonds.dharmonie.data.ApiService
 import retrofit2.Retrofit
 

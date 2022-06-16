@@ -5,7 +5,7 @@ import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.umbertoemonds.dharmonie.databinding.ActivityAddChordsBinding
 
-class AddChordsActivity : AppCompatActivity() {
+class AjouterGrilleActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddChordsBinding
 

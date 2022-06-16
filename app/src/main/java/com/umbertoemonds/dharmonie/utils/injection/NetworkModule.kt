@@ -12,6 +12,8 @@ object NetworkModule {
 
     fun provideOkHttpClient(): OkHttpClient {
         val okHttpClientBuilder = OkHttpClient().newBuilder()
+        okHttpClientBuilder.addInterceptor(provideHeaderInterceptor())
+
         return okHttpClientBuilder.build()
     }
 
@@ -28,7 +30,9 @@ object NetworkModule {
     private fun provideHeaderInterceptor(): Interceptor {
         return Interceptor {
             val requestBuilder = it.request().newBuilder()
-            //hear you can add all headers you want by calling 'requestBuilder.addHeader(name ,  value)'
+
+            // TODO : requestBuilder.addHeader("Authorization", token)
+
             it.proceed(requestBuilder.build())
         }
     }

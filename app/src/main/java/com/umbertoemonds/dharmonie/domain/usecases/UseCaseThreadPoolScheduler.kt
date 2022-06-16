@@ -34,4 +34,10 @@ class UseCaseThreadPoolScheduler : UseCaseScheduler {
             useCaseCallback.onError(t)
         }
     }
+
+    override fun <V : UseCase.ResponseValue> onSessionExpired(useCaseCallback: UseCase.UseCaseCallback<V>) {
+        handler.post {
+            useCaseCallback.onSessionExpired()
+        }
+    }
 }

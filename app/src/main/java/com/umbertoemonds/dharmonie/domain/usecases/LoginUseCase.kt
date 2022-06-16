@@ -19,7 +19,6 @@ class LoginUseCase(private val userRepository: UserRepository) : UseCase<LoginUs
                 }
 
                 override fun onError(t: Throwable) {
-                    // TODO : creer une exception personnalisee
                     useCaseCallback?.onError(t)
                 }
 

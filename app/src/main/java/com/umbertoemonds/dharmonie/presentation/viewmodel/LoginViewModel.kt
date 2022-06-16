@@ -10,7 +10,6 @@ import com.umbertoemonds.dharmonie.domain.usecases.UseCaseHandler
 class LoginViewModel (private val useCaseHandler: UseCaseHandler, private val loginUseCase: LoginUseCase) : ViewModel() {
 
     fun login(loginData: LoginData, callback: UserRepository.LoginCallback){
-
         val requestValue = LoginUseCase.RequestValues(loginData)
 
         useCaseHandler.execute(loginUseCase, requestValue, object : UseCase.UseCaseCallback<LoginUseCase.ResponseValue>{
