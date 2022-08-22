@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.activity.AjouterGrilleActivity">
+            android:name=".presentation.activity.AjouterGrilleActivity"
+            android:theme="@style/Theme.DHarmonie.NoActionBar">
         </activity>
         <activity
             android:name=".presentation.activity.LoginActivity"

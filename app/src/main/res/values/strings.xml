@@ -3,6 +3,14 @@
     <string name="action_settings">Settings</string>
     <string name="session_expired">La session a expiré, veuillez vous reconnecter</string>
 
+    <!-- Mapping -->
+    <string name="major">maj</string>
+    <string name="minor">min</string>
+
+    <!-- GrillesActivity -->
+    <string name="add_grille">Ajouter une grille</string>
+    <string name="grilles_title">Mes grilles</string>
+
     <!-- LoginActivity -->
     <string name="email_adress">Adresse e-mail</string>
     <string name="password">Mot de passe</string>
